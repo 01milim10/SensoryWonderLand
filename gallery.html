@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery | Sensory Wonderland</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .gallery-container {
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .gallery-container h1 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+      }
+
+      .gallery-grid img,
+      .gallery-grid video {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        background: #000;
+      }
+
+      .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: fixed;
+      }
+
+      .lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+      .nav-button,
+      .close-button {
+        position: absolute;
+        font-size: 2rem;
+        color: white;
+        background: rgba(0, 0, 0, 0.6);
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .prev-button {
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .next-button {
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .close-button {
+        top: 20px;
+        right: 20px;
+        font-size: 1.5rem;
+      }
+      .nav-button img {
+        width: 30px;
+        height: 30px;
+        filter: brightness(0) invert(1); /* makes image white */
+      }
+
+      #lightbox-content {
+        max-width: 90%;
+        max-height: 90%;
+      }
+
+      #lightbox-content img,
+      #lightbox-content video {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <img
+          src="images/image.png"
+          alt="Sensory Wonderland Logo"
+          class="logo"
+        />
+      </header>
+
+      <nav>
+        <a href="index.html">About Us</a>
+        <a href="therapy.html">Therapy Services</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="gallery.html">Gallery</a>
+      </nav>
+
+      <div class="gallery-container">
+        <h1>Photo & Video Gallery</h1>
+        <div class="gallery-grid">
+          <img
+            src="images/ball_background2000.jpg"
+            alt="Ball background"
+            onclick="openLightbox(this.src)"
+          />
+          <img
+            src="images/feet.jpg"
+            alt="Feet therapy"
+            onclick="openLightbox(this.src)"
+          />
+          <img
+            src="images/gym_photo.jpg"
+            alt="Gym photo"
+            onclick="openLightbox(this.src)"
+          />
+          <img
+            src="images/image.png"
+            alt="Misc image"
+            onclick="openLightbox(this.src)"
+          />
+          <img
+            src="images/logo_960.jpg"
+            alt="Logo"
+            onclick="openLightbox(this.src)"
+          />
+          <video controls>
+            <source src="media/sample-video-1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <video controls>
+            <source src="media/sample-video-2.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <video controls>
+            <source src="media/sample-video-3.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <video controls>
+            <source src="media/sample-video-4.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <video controls>
+            <source src="media/sample-video-5.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <video controls>
+            <source src="media/sample-video-6.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
+      <div id="lightbox" class="lightbox">
+        <button class="nav-button prev-button" onclick="changeMedia(-1)">
+          <img src="icons/prev.svg" alt="Previous" />
+        </button>
+        <div id="lightbox-content"></div>
+        <button class="nav-button next-button" onclick="changeMedia(1)">
+          <img src="icons/next.svg" alt="Next" />
+        </button>
+        <button class="close-button" onclick="closeLightbox()">✖</button>
+      </div>
+
+      <footer>
+        <p>
+          &copy; 2016–<span id="current-year"></span> Sensory Wonderland. All
+          rights reserved.
+        </p>
+        <p>
+          Follow us on
+          <a
+            href="https://m.facebook.com/Sensory-Wonderland-243149139350806/?ref=bookmarks"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Facebook
+          </a>
+        </p>
+        <p>
+          For questions, contact
+          <a href="mailto:webmaster@sensorywonderlandtn.com">
+            webmaster@sensorywonderlandtn.com
+          </a>
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById("current-year").textContent =
+        new Date().getFullYear();
+
+      const galleryItems = Array.from(
+        document.querySelectorAll(".gallery-grid img, .gallery-grid video")
+      );
+      const mediaSources = galleryItems.map((item) => ({
+        type: item.tagName.toLowerCase(),
+        src:
+          item.tagName.toLowerCase() === "img"
+            ? item.src
+            : item.querySelector("source").src,
+      }));
+
+      let currentIndex = 0;
+
+      function openLightbox(indexOrSrc) {
+        currentIndex =
+          typeof indexOrSrc === "number"
+            ? indexOrSrc
+            : mediaSources.findIndex((m) => m.src === indexOrSrc);
+
+        renderMedia();
+        document.getElementById("lightbox").style.display = "flex";
+      }
+
+      function renderMedia() {
+        const { type, src } = mediaSources[currentIndex];
+        const container = document.getElementById("lightbox-content");
+        container.innerHTML = "";
+
+        if (type === "img") {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = "Preview";
+          container.appendChild(img);
+        } else if (type === "video") {
+          const video = document.createElement("video");
+          video.src = src;
+          video.controls = true;
+          video.autoplay = true;
+          container.appendChild(video);
+        }
+      }
+
+      function changeMedia(direction) {
+        currentIndex =
+          (currentIndex + direction + mediaSources.length) %
+          mediaSources.length;
+        renderMedia();
+      }
+
+      function closeLightbox() {
+        document.getElementById("lightbox").style.display = "none";
+        document.getElementById("lightbox-content").innerHTML = "";
+      }
+
+      galleryItems.forEach((item, index) => {
+        item.addEventListener("click", () => openLightbox(index));
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us | Sensory Wonderland</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img
+          src="images/image.png"
+          alt="Sensory Wonderland Logo"
+          class="logo"
+        />
+      </header>
+
+      <nav>
+        <a href="index.html">About Us</a>
+        <a href="therapy.html">Therapy Services</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="gallery.html">Gallery</a>
+      </nav>
+
+      <main>
+        <div class="about-section">
+          <div class="text-content">
+            <h2>Who We Are</h2>
+            <p>
+              Sensory Wonderland, the first state-of-the-art kid’s sensory gym
+              in the mid-south region, is specially designed for children with
+              autism, sensory processing disorders, ADHD/ADD or other
+              developmental disabilities. Our family-friendly facility offers a
+              secure, safe, therapeutic, and fun environment for children to
+              improve physical strength, sensory processing, communication,
+              social skills, and self-help skills. Features include climbing
+              walls, swings, a slide, ball pits, crash pads, zip lines, a
+              sandbox/tray, and more.
+            </p>
+          </div>
+          <div class="image-content">
+            <img src="images/gym_photo.jpg" alt="Sensory Gym Area" />
+          </div>
+        </div>
+        <div>
+          <h2>Our Mission</h2>
+          <p>
+            Our mission is to provide high-quality therapy services to children
+            with special needs while creating a safe, fun, and therapeutic
+            environment where learning happens through experience and
+            exploration. We also support the family system by offering ancillary
+            services (psychoeducational groups and coaching) to siblings and
+            caregivers.
+          </p>
+        </div>
+      </main>
+
+      <div id="footer">
+        <footer>
+          <p>
+            &copy; 2016-<span id="current-year"></span>. All rights reserved.
+          </p>
+          <p>
+            Follow us on
+            <a
+              href="https://m.facebook.com/Sensory-Wonderland-243149139350806/?ref=bookmarks"
+              target="_blank"
+            >
+              Facebook
+            </a>
+          </p>
+          <p>
+            For questions, contact
+            <a href="mailto:webmaster@sensorywonderlandtn.com">
+              webmaster@sensorywonderlandtn.com
+            </a>
+          </p>
+        </footer>
+        <script>
+          document.getElementById("current-year").textContent =
+            new Date().getFullYear();
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
