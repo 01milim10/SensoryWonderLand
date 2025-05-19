@@ -44,14 +44,14 @@ nav a {
   color: #181818;
   font-weight: bold;
   font-size: larger;
-  padding: 8px 16px; /* Add padding for clickable area */
-  border-radius: 6px; /* Optional: rounded corners */
-  transition: background-color 0.3s, color 0.3s; /* Smooth hover transition */
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 nav a:hover {
-  background-color: #00aade; /* Fill background */
-  color: white; /* Optional: invert text color for contrast */
+  background-color: #00aade;
+  color: white;
 }
 
 main {
@@ -94,7 +94,7 @@ footer p {
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
   }
 }
 
